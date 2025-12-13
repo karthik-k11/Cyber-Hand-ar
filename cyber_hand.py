@@ -98,4 +98,15 @@ class CyberHUD:
             cv2.putText(frame, "SYSTEM ARMED", (palm[0]-60, palm[1]+100), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, C_FLUX, 2)
             
-            
+        # Connections
+        for tip in fingers:
+            cv2.line(frame, palm, tip, (50, 50, 50), 1)
+            cv2.circle(frame, tip, 4, C_CORE, -1)
+
+        # Scanning Line
+        self.render_scanner(frame, palm[1], w)
+
+        # HUD Bars
+        self.render_data_stream(frame, 30, h - 150, self.energy_level)
+
+        return frame    
