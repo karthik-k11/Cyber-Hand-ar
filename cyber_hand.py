@@ -141,3 +141,20 @@ def run_system():
         
         # Process
         result = tracker.process(img_rgb)
+
+        # Darken the background for Sci-Fi look
+        overlay = img.copy()
+        cv2.rectangle(overlay, (0,0), (1280, 720), (0,0,0), -1)
+        cv2.addWeighted(overlay, 0.3, img, 0.7, 0, img)
+
+        if result.multi_hand_landmarks:
+            for hand_lms in result.multi_hand_landmarks:
+                img = hud.update(img, hand_lms)
+        
+        cv2.imshow("CYBER-HAND V2.0", img)
+        
+        if cv2.waitKey(1) & 0xFF == 27: 
+            break
+
+    cam.release()
+    cv2.destroyAllWindows()
