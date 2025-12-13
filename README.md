@@ -33,7 +33,7 @@ This prototype demonstrates the core technology used in:
 ### Setup
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/cyber-hand-ar.git](https://github.com/YOUR_USERNAME/cyber-hand-ar.git)
+    git clone [https://github.com/karthik-k11/Cyber-Hand-ar.git](https://github.com/karthik-k11/Cyber-Hand-ar.git)
     cd cyber-hand-ar
     ```
 
