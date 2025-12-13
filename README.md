@@ -33,8 +33,8 @@ This prototype demonstrates the core technology used in:
 ### Setup
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/karthik-k11/Cyber-Hand-ar.git](https://github.com/karthik-k11/Cyber-Hand-ar.git)
-    cd cyber-hand-ar
+    git clone https://github.com/karthik-k11/Cyber-Hand-ar.git
+    cd Cyber-Hand-ar
     ```
 
 2.  **Create a Virtual Environment**
