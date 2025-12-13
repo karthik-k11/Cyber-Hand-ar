@@ -53,8 +53,33 @@ class CyberHUD:
     
     def render_scanner(self, canvas, palm_y, width):
         """Horizontal scanning laser effect"""
-        scan_y = (self.ticks * 5) % 480 # Looping scan line
+        scan_y = (self.ticks * 5) % 480
         cv2.line(canvas, (0, scan_y), (width, scan_y), (0, 50, 0), 1)
-        if abs(scan_y - palm_y) < 50: # If scanner hits hand
+        if abs(scan_y - palm_y) < 50:
             cv2.putText(canvas, "TARGET LOCKED", (50, scan_y - 10), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, C_SCAN, 1)
+    
+    def update(self, frame, landmarks):
+        h, w, _ = frame.shape
+        self.ticks += 1
+        
+        #Convert landmarks to pixel coords
+        coords = [(int(l.x * w), int(l.y * h)) for l in landmarks.landmark]
+        palm = coords[0] # Wrist
+        fingers = [coords[4], coords[8], coords[12], coords[16], coords[20]] # Tips
+        
+        #Update Trails
+        for i, tip in enumerate(fingers):
+            self.trails[i].append(tip)
+            pts = np.array(self.trails[i], np.int32)
+            cv2.polylines(frame, [pts], False, C_FLUX, 1 + i)
+
+        #For Calculating Energy
+        try:
+            poly_area = cv2.contourArea(np.array(fingers + [palm], dtype=np.int32))
+            max_area = w * h * 0.08 
+            spread = min(poly_area / max_area, 1.0)
+            target_energy = 1.0 - spread 
+            self.energy_level += (target_energy - self.energy_level) * 0.1
+        except:
+            pass
