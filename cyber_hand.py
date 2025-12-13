@@ -37,3 +37,16 @@ class CyberHUD:
                 start = angle_start + (i * 120)
                 end = start + 60
                 cv2.ellipse(canvas, center, (r, r), 0, start, end, color, 2)
+    
+    def render_data_stream(self, canvas, x, y, value):
+        """Draws a vertical data bar that reacts to energy"""
+        height = 100
+        fill = int(height * value)
+        cv2.rectangle(canvas, (x, y), (x + 20, y + height), (50, 50, 50), 1)
+        color = (0, int(255 * (1-value)), int(255 * value))
+        cv2.rectangle(canvas, (x, y + height - fill), (x + 20, y + height), color, -1)
+
+        # Glitch text effect
+        txt = f"PWR: {int(value * 100)}%"
+        cv2.putText(canvas, txt, (x - 40, y + height + 20), 
+                   cv2.FONT_HERSHEY_PLAIN, 1, C_TEXT, 1)
