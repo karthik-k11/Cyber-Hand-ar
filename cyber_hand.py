@@ -50,3 +50,11 @@ class CyberHUD:
         txt = f"PWR: {int(value * 100)}%"
         cv2.putText(canvas, txt, (x - 40, y + height + 20), 
                    cv2.FONT_HERSHEY_PLAIN, 1, C_TEXT, 1)
+    
+    def render_scanner(self, canvas, palm_y, width):
+        """Horizontal scanning laser effect"""
+        scan_y = (self.ticks * 5) % 480 # Looping scan line
+        cv2.line(canvas, (0, scan_y), (width, scan_y), (0, 50, 0), 1)
+        if abs(scan_y - palm_y) < 50: # If scanner hits hand
+            cv2.putText(canvas, "TARGET LOCKED", (50, scan_y - 10), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, C_SCAN, 1)
