@@ -55,8 +55,10 @@ This prototype demonstrates the core technology used in:
 
 ## 🎮 How to Use
 Run the main script:
+
 ```bash
 python cyber_hand.py
+```
 
 ### Controls & Gestures
 
