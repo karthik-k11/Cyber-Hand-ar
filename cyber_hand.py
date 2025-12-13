@@ -126,3 +126,18 @@ def run_system():
         min_detection_confidence=0.7,
         min_tracking_confidence=0.7
     )  
+
+    hud = CyberHUD()
+
+    print("[SYSTEM ONLINE] Initialize Hand Tracking...")
+    
+    while True:
+        success, img = cam.read()
+        if not success: break
+
+        # Mirror and Convert
+        img = cv2.flip(img, 1)
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        
+        # Process
+        result = tracker.process(img_rgb)
