@@ -109,4 +109,20 @@ class CyberHUD:
         # HUD Bars
         self.render_data_stream(frame, 30, h - 150, self.energy_level)
 
-        return frame    
+        return frame  
+    
+#Main execution
+def run_system():
+    # Setup Camera
+    cam = cv2.VideoCapture(0)
+    cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+    cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+
+    # Setup MediaPipe
+    mp_tracker = mp.solutions.hands
+    tracker = mp_tracker.Hands(
+        max_num_hands=1,
+        model_complexity=1,
+        min_detection_confidence=0.7,
+        min_tracking_confidence=0.7
+    )  
