@@ -83,3 +83,19 @@ class CyberHUD:
             self.energy_level += (target_energy - self.energy_level) * 0.1
         except:
             pass
+
+        #Render Interface Elements
+        
+        # Dynamic Pulse Core
+        core_size = int(20 + (self.energy_level * 50))
+        glow_color = tuple(int(c * self.energy_level) for c in C_SCAN)
+        self.render_bloom(frame, palm, core_size + 10, glow_color, 0.4)
+        cv2.circle(frame, palm, core_size, C_CORE, 2)
+        
+        # Orbital Rings
+        if self.energy_level > 0.5:
+            self.render_orbital_rings(frame, palm, 60, C_FLUX)
+            cv2.putText(frame, "SYSTEM ARMED", (palm[0]-60, palm[1]+100), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, C_FLUX, 2)
+            
+            
