@@ -22,7 +22,7 @@ It features a "Bio-Energy" mechanic where the geometry and visuals of the HUD ev
 This prototype demonstrates the core technology used in:
 * **🏥 Sterile Medical Interfaces**: Allowing surgeons to manipulate X-rays/data without touching non-sterile screens.
 * **🏭 Smart Kiosks**: Touchless interaction for public terminals (ATMs, Ticketing) to improve hygiene.
-* **👓 AR/VR Headsets**: Controller-free input systems similar to Apple Vision Pro or Meta Quest.
+* **👓 AR/VR Headsets**: Controller-free hand-tracking interaction systems used in devices such as Apple Vision Pro and Meta Quest.
 
 ## 🛠️ Installation
 
